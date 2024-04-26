@@ -7,6 +7,7 @@ import Register from "../Register/Register";
 import Root from "../Root";
 import AddCraft from "../AddCraft/AddCraft";
 import UpdateCraft from "../UpdateCraft/UpdateCraft";
+import AllCrafts from "../AllCrafts/AllCrafts";
 
 const router = createBrowserRouter([
     {
@@ -26,9 +27,11 @@ const router = createBrowserRouter([
           path: "/register",
           element: <Register></Register>,
         },
-        // {
-        //     path: '/allcrafts'
-        // },
+        {
+            path: '/allcrafts',
+            element: <AllCrafts></AllCrafts>,
+            loader: ()=> fetch('http://localhost:5000/crafts')
+        },
         // {
         //     path: '/mycraft'
         // },

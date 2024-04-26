@@ -1,6 +1,9 @@
+import { useContext } from "react";
 import { IoIosArrowDown } from "react-icons/io";
 import Swal from 'sweetalert2'
+import { AuthContext } from "../Provider/AuthProvider";
 const AddCraft = () => {
+    const {user} = useContext(AuthContext)
     const handleAddCraft = event=>{
         event.preventDefault()
         const form = event.target;
@@ -35,6 +38,7 @@ const AddCraft = () => {
                     icon: 'success',
                     confirmButtonText: 'Cancel'
                   })
+                //   form.reset()
             }
         })
     }
