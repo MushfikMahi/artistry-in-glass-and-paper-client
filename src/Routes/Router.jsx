@@ -5,6 +5,7 @@ import Home from "../Home/Home";
 import Login from "../Login/Login";
 import Register from "../Register/Register";
 import Root from "../Root";
+import AddCraft from "../AddCraft/AddCraft";
 
 const router = createBrowserRouter([
     {
@@ -30,9 +31,10 @@ const router = createBrowserRouter([
         // {
         //     path: '/mycraft'
         // },
-        // {
-        //     path: '/addcrafts'
-        // }
+        {
+            path: '/addcraft',
+            element:<AddCraft></AddCraft>
+        }
       ],
     },
   ]);

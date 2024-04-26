@@ -16,22 +16,21 @@ const Navbar = () => {
           <li>
             <NavLink to={"/allcrafts"}>All Art & craft Items</NavLink>
           </li>
-          <li>
+          {
+            user && 
+            <>
+            <li>
             <NavLink to={"/addcraft"}>Add Craft Item</NavLink>
           </li>
           <li>
             <NavLink to={"/mycrafts"}>My Art&Craft List</NavLink>
           </li>
-          <li>
-            <NavLink to={"/login"}>Login</NavLink>
-          </li>
-          <li>
-            <NavLink to={"/register"}>Register</NavLink>
-          </li>
+          </>
+          }
         </>
       );
     return (
-        <div className="navbar fixed z-10 bg-white bg-opacity-60 text-black">
+        <div className="navbar fixed z-10 bg-white bg-opacity-10 text-white">
   <Helmet>
     <title>Artistry - Home</title>
   </Helmet>
@@ -84,12 +83,20 @@ const Navbar = () => {
       </div>
     </div>
   ) : (
-    <Link
+    <div className="flex items-center gap-5">
+      <Link
       to={"/login"}
       className="btn bg-green-500 text-white border-none"
     >
       Log In
     </Link>
+    <Link
+      to={"/register"}
+      className="btn bg-green-500 text-white border-none"
+    >
+      Register
+    </Link>
+    </div>
   )}
 </div>
 </div>
