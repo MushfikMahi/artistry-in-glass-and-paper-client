@@ -1,4 +1,5 @@
 import { IoIosArrowDown } from "react-icons/io";
+import Swal from 'sweetalert2'
 const AddCraft = () => {
     const handleAddCraft = event=>{
         event.preventDefault()
@@ -15,6 +16,27 @@ const AddCraft = () => {
         const userEmail = form.userEmail.value;
         const description = form.description.value;
         console.log(photo, name, subcategory, time, price, rating, customization, stockStatus, description, userName, userEmail);
+        const craft = { photo, name, subcategory, time, price, rating, customization, stockStatus, description, userName, userEmail }
+        console.log(craft);
+        fetch('http://localhost:5000/crafts', {
+            method: 'POST', 
+            headers: {
+                'content-type' : 'application/json'
+            },
+            body: JSON.stringify(craft)
+        })
+        .then(res=>res.json())
+        .then(data=>{
+            console.log(data);
+            if(data.insertedId){
+                Swal.fire({
+                    title: 'Success!',
+                    text: 'You have successfully added a craft',
+                    icon: 'success',
+                    confirmButtonText: 'Cancel'
+                  })
+            }
+        })
     }
     return (
         <div className="bg-[#F4F3F0] md:p-24 px-6 py-14">
