@@ -6,6 +6,7 @@ import Login from "../Login/Login";
 import Register from "../Register/Register";
 import Root from "../Root";
 import AddCraft from "../AddCraft/AddCraft";
+import UpdateCraft from "../UpdateCraft/UpdateCraft";
 
 const router = createBrowserRouter([
     {
@@ -34,6 +35,10 @@ const router = createBrowserRouter([
         {
             path: '/addcraft',
             element:<AddCraft></AddCraft>
+        },
+        {
+          path: '/updateCraft',
+          element: <UpdateCraft></UpdateCraft>
         }
       ],
     },

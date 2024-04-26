@@ -1,5 +1,6 @@
 import { IoIosArrowDown } from "react-icons/io";
-const AddCraft = () => {
+
+const UpdateCraft = () => {
     const handleAddCraft = event=>{
         event.preventDefault()
         const form = event.target;
@@ -129,7 +130,7 @@ const AddCraft = () => {
                         </div>
                     </div>
                 </div>
-                <div className="">
+                <div className="mb-8">
                     <div className="form-control w-full">
                         <label className="label">
                             <span className="label-text">Description</span>
@@ -139,29 +140,11 @@ const AddCraft = () => {
                         </label>
                     </div>
                 </div>
-                <div className="md:flex mb-8">
-                    <div className="form-control md:w-1/2">
-                        <label className="label">
-                            <span className="label-text">User Name</span>
-                        </label>
-                        <label className="input-group">
-                            <input type="text" name="userName" placeholder="User Name" className="input input-bordered w-full" />
-                        </label>
-                    </div>
-                    <div className="form-control md:w-1/2 md:ml-4">
-                        <label className="label">
-                            <span className="label-text">User Email</span>
-                        </label>
-                        <label className="input-group">
-                            <input type="text" name="userEmail" placeholder="User Email" className="input input-bordered w-full" />
-                        </label>
-                    </div>
-                </div>
-                <input type="submit" value="Add Craft" className="btn btn-block" />
+                <input type="submit" value="Update Craft" className="btn btn-block" />
 
             </form>
         </div>
     );
 };
 
-export default AddCraft;
+export default UpdateCraft;

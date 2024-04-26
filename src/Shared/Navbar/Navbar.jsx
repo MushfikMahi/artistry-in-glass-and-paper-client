@@ -16,6 +16,9 @@ const Navbar = () => {
           <li>
             <NavLink to={"/allcrafts"}>All Art & craft Items</NavLink>
           </li>
+          <li>
+            <NavLink to={"/updateCraft"}>Update Craft</NavLink>
+          </li>
           {
             user && 
             <>
@@ -30,7 +33,7 @@ const Navbar = () => {
         </>
       );
     return (
-        <div className="navbar fixed z-10 bg-white bg-opacity-10 text-white">
+        <div className="navbar fixed z-10 bg-black bg-opacity-60 text-white">
   <Helmet>
     <title>Artistry - Home</title>
   </Helmet>
