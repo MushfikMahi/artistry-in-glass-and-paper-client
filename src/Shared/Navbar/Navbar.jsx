@@ -1,7 +1,13 @@
+import { useContext } from "react";
 import { Helmet } from "react-helmet";
 import { Link, NavLink } from "react-router-dom";
+import { AuthContext } from "../../Provider/AuthProvider";
 
 const Navbar = () => {
+  const { user, logOut } = useContext(AuthContext);
+  const handleLogOut = () => {
+    logOut()
+  };
     const links = (
         <>
           <li>
@@ -22,8 +28,6 @@ const Navbar = () => {
           <li>
             <NavLink to={"/register"}>Register</NavLink>
           </li>
-      
-          
         </>
       );
     return (
@@ -63,30 +67,31 @@ const Navbar = () => {
   <div className="navbar-center hidden lg:flex">
     <ul className="menu menu-horizontal px-1">{links}</ul>
   </div>
-  {/* <div className="navbar-end">
-    {user ? (
-      <div className="flex items-center gap-5">
-        {" "}
-        <button
-          className="btn bg-green-500 text-white border-none"
-        >
-          Log Out
-        </button>{" "}
-        <div className="w-10 rounded-full">
-          <Link to={"/profile"}>
-            <img title={user.displayName} alt="user" src={user.photoURL} />
-          </Link>
-        </div>
-      </div>
-    ) : (
-      <Link
-        to={"/login"}
+  <div className="navbar-end">
+  {user ? (
+    <div className="flex items-center gap-5">
+      {" "}
+      <button
+        onClick={handleLogOut}
         className="btn bg-green-500 text-white border-none"
       >
-        Log In
-      </Link>
-    )}
-  </div> */}
+        Log Out
+      </button>{" "}
+      <div className="w-10 rounded-full">
+        <Link to={"/profile"}>
+          <img title={user.displayName} alt="user" src={user.photoURL} />
+        </Link>
+      </div>
+    </div>
+  ) : (
+    <Link
+      to={"/login"}
+      className="btn bg-green-500 text-white border-none"
+    >
+      Log In
+    </Link>
+  )}
+</div>
 </div>
     );
 };
