@@ -1,7 +1,8 @@
 import { FaStar } from "react-icons/fa";
+import { Link } from "react-router-dom";
 const Craft = ({craft}) => {
-    const { photo, name, subcategory, time, price, rating, customization, stockStatus, description, userName, userEmail } = craft
-    console.log(craft);
+    const { _id, photo, name, subcategory, time, price, rating, customization, stockStatus, description, userName, userEmail } = craft
+    // console.log(craft);
     return (
         <div>
             <div className="card card-compact bg-base-100 shadow-xl">
@@ -19,7 +20,9 @@ const Craft = ({craft}) => {
         </div>
     </div>
     <div className="card-actions justify-end">
+      <Link to={`/detail/${_id}`}>
       <button className="btn btn-primary">View Detail</button>
+      </Link>
     </div>
   </div>
 </div>

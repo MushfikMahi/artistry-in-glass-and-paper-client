@@ -8,6 +8,8 @@ import Root from "../Root";
 import AddCraft from "../AddCraft/AddCraft";
 import UpdateCraft from "../UpdateCraft/UpdateCraft";
 import AllCrafts from "../AllCrafts/AllCrafts";
+import DetailCraft from "../AllCrafts/DetailCraft";
+import Mycrafts from "../MyCraft/Mycrafts";
 
 const router = createBrowserRouter([
     {
@@ -32,9 +34,15 @@ const router = createBrowserRouter([
             element: <AllCrafts></AllCrafts>,
             loader: ()=> fetch('http://localhost:5000/crafts')
         },
-        // {
-        //     path: '/mycraft'
-        // },
+        {
+          path: '/detail/:id',
+          element:<DetailCraft></DetailCraft>,
+          loader: ({params})=> fetch(`http://localhost:5000/crafts/${params.id}`)
+        },
+        {
+            path: '/mycrafts',
+            element: <Mycrafts></Mycrafts>
+        },
         {
             path: '/addcraft',
             element:<AddCraft></AddCraft>
