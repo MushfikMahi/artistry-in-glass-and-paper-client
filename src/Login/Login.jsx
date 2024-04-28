@@ -16,7 +16,7 @@ const Login = () => {
     console.log(email, password);
     emailPassLogIn(email, password)
       .then( () => 
-    //   navigate(location?.state ? location.state : "/"),
+      navigate(location?.state ? location.state : "/"),
         toast("You have sucessfully loged in", {
           className: "mt-20",
         })
@@ -26,7 +26,7 @@ const Login = () => {
   const handelGoogleSignIn = () => {
     googleCreateUser()
       .then(() => {
-        // navigate(location?.state ? location.state : "/");
+        navigate(location?.state ? location.state : "/");
       })
       .catch((error) => console.log(error));
   };

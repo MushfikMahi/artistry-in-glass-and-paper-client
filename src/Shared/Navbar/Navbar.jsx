@@ -33,8 +33,6 @@ const Navbar = () => {
           <li>
             <NavLink to={"/allcrafts"}>All Art & craft Items</NavLink>
           </li>
-          {
-            user && 
             <>
             <li>
             <NavLink to={"/addcraft"}>Add Craft Item</NavLink>
@@ -43,7 +41,6 @@ const Navbar = () => {
             <NavLink to={"/mycrafts"}>My Art&Craft List</NavLink>
           </li>
           </>
-          }
         </>
       );
     return (
@@ -94,18 +91,17 @@ const Navbar = () => {
 </label>
   {user ? (
     <div className="flex items-center gap-5">
-      {" "}
+      <div className="w-10 rounded-full">
+        <Link to={"/profile"}>
+          <img className="w-10 h-10 rounded-full border-green-500 border-4" title={user.displayName} alt="user" src={user.photoURL} />
+        </Link>
+      </div>
       <button
         onClick={handleLogOut}
         className="btn bg-green-500 text-white border-none"
       >
         Log Out
-      </button>{" "}
-      <div className="w-10 rounded-full">
-        <Link to={"/profile"}>
-          <img title={user.displayName} alt="user" src={user.photoURL} />
-        </Link>
-      </div>
+      </button>
     </div>
   ) : (
     <div className="flex items-center gap-5">

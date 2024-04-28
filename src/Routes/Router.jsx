@@ -10,6 +10,7 @@ import UpdateCraft from "../UpdateCraft/UpdateCraft";
 import AllCrafts from "../AllCrafts/AllCrafts";
 import DetailCraft from "../AllCrafts/DetailCraft";
 import Mycrafts from "../MyCraft/Mycrafts";
+import Private from "../Private/Private";
 
 const router = createBrowserRouter([
     {
@@ -41,11 +42,11 @@ const router = createBrowserRouter([
         },
         {
           path: '/mycrafts',
-          element: <Mycrafts></Mycrafts>
+          element: <Private><Mycrafts></Mycrafts></Private>
         },
         {
           path: '/addcraft',
-          element:<AddCraft></AddCraft>
+          element:<Private><AddCraft></AddCraft></Private>
         },
         {
           path: '/updateCraft/:id',

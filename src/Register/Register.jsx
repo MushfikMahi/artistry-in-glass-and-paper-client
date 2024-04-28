@@ -28,7 +28,7 @@ const Register = () => {
                 
               updateUser(name, photo);
               console.log(name, photo);
-            //   navigate(location?.state ? location.state : "/")
+              navigate(location?.state ? location.state : "/")
             })
             .catch((error) =>
               toast.error(error.message, {
