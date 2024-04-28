@@ -44,8 +44,8 @@ const router = createBrowserRouter([
           element: <Mycrafts></Mycrafts>
         },
         {
-            path: '/addcraft',
-            element:<AddCraft></AddCraft>
+          path: '/addcraft',
+          element:<AddCraft></AddCraft>
         },
         {
           path: '/updateCraft/:id',

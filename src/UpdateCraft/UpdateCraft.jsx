@@ -10,12 +10,25 @@ const UpdateCraft = () => {
     const handleSelectChange = (e) => {
       setSelectedSubcategory(e.target.value);
     };
-    const handleAddCraft = event=>{
+
+    const [customizationOption, setCustomizationOption] = useState(craft?.customization);
+
+    const handleCustomizationChange = (e) => {
+        setCustomizationOption(e.target.value);
+      };
+    const [stockStatusOption, setStockStatusOption] = useState(craft?.stockStatus);
+
+    const handleStockStatusOptionOptionChange = (e) => {
+        setStockStatusOption(e.target.value);
+      };
+
+
+    const handleUpdateCraft = event=>{
         event.preventDefault()
         const form = event.target;
         const photo = form.photo.value;
         const name = form.name.value;
-        // const subcategory = form.subcategory.value;
+        const subcategory = form.subcategory.value;
         const time = form.time.value;
         const price = form.price.value;
         const rating = form.rating.value;
@@ -23,8 +36,20 @@ const UpdateCraft = () => {
         const stockStatus = form.stockStatus.value;
         const description = form.description.value;
         
-        // console.log(photo, name, subcategory, time, price, rating, customization, stockStatus, description);
-        console.log(selectedSubcategory);
+        console.log(photo, name, subcategory, time, price, rating, customization, stockStatus, description);
+        const updatedCraft = {photo, name, subcategory, time, price, rating, customization, stockStatus, description}
+
+        fetch(`http://localhost:5000/update/${craft._id}`,{
+          method: 'PUT',
+          headers: {
+            'content-type': 'application/json'
+          },
+          body: JSON.stringify(updatedCraft)
+        })
+        .then(res=>res.json())
+        .then(data=>{
+          console.log(data);
+        })
     }
     
     
@@ -35,8 +60,8 @@ const UpdateCraft = () => {
     
     return (
         <div className="bg-[#F4F3F0] md:p-24 px-6 py-14">
-            <h2 className="text-3xl font-extrabold">Add a Craft</h2>
-            <form onSubmit={handleAddCraft}>
+            <h2 className="text-3xl font-extrabold">Update the craft : {craft?.name}</h2>
+            <form onSubmit={handleUpdateCraft}>
                 <div className="md:flex md:mb-8">
                     <div className="form-control md:w-1/2">
                     <label className="label">
@@ -84,7 +109,7 @@ const UpdateCraft = () => {
                             <span className="label-text">Processing Time</span>
                         </label>
                         <label className="input-group">
-                            <input type="text" name="time" placeholder="Processing Time" className="input input-bordered w-full" />
+                            <input defaultValue={craft?.time} type="text" name="time" placeholder="Processing Time" className="input input-bordered w-full" />
                         </label>
                     </div>
                     <div className="form-control md:w-1/3 md:ml-4">
@@ -92,7 +117,7 @@ const UpdateCraft = () => {
                             <span className="label-text">Price</span>
                         </label>
                         <label className="input-group">
-                            <input type="text" name="price" placeholder="Price" className="input input-bordered w-full" />
+                            <input defaultValue={craft?.price} type="text" name="price" placeholder="Price" className="input input-bordered w-full" />
                         </label>
                     </div>
                 </div>
@@ -103,44 +128,71 @@ const UpdateCraft = () => {
                             <span className="label-text">Rating</span>
                         </label>
                         <label className="input-group">
-                            <input type="text" name="rating" placeholder="Rating" className="input input-bordered w-full" />
+                            <input defaultValue={craft?.rating} type="text" name="rating" placeholder="Rating" className="input input-bordered w-full" />
                         </label>
                     </div>
-                    <div className="form-control md:w-1/3 md:ml-10 ml-4">
-                        <div>
-                        <label className="label">
-                            <span className="label-text">Customization</span>
-                        </label>
-                        <label className="flex items-center gap-5">
-                        <div className="flex items-center gap-2">
-                        <span className="text-xl">Yes</span>
-                        <input type="radio" value='Yes' name="customization" className="radio" />
-                        
-                        </div>
-                        <div className="flex items-center gap-2">
-                        <span className="text-xl">No</span>
-                        <input value='No' type="radio" name="customization" className="radio" />
-                        </div>
-                        </label>
-                        </div>
+                    
+<div className="form-control md:w-1/3 md:ml-10 ml-4">
+                    <div>
+      <label className="label">
+        <span className="label-text">Customization</span>
+      </label>
+      <label className="flex items-center gap-5">
+        <div className="flex items-center gap-2">
+          <span className="text-xl">Yes</span>
+          <input
+            type="radio"
+            value="Yes"
+            name="customization"
+            className="radio"
+            checked={customizationOption === 'Yes'}
+            onChange={handleCustomizationChange}
+          />
+        </div>
+        <div className="flex items-center gap-2">
+          <span className="text-xl">No</span>
+          <input
+            type="radio"
+            value="No"
+            name="customization"
+            className="radio"
+            checked={customizationOption === 'No'}
+            onChange={handleCustomizationChange}
+          />
+        </div>
+      </label>
+    </div>
                     </div>
                     <div className="form-control md:w-1/3 ml-4">
-                        <div>
-                        <label className="label">
-                            <span className="label-text">Stock Status</span>
-                        </label>
-                        <label className="flex items-center gap-5">
-                        <div className="flex items-center gap-2">
-                        <span className="text-xl">In stock</span>
-                        <input type="radio" value='In stock' name="stockStatus" className="radio" />
-                        
-                        </div>
-                        <div className="flex items-center gap-2">
-                        <span className="text-xl">Made to Order</span>
-                        <input value='Made to Order' type="radio" name="stockStatus" className="radio" />
-                        </div>
-                        </label>
-                        </div>
+                    <div>
+      <label className="label">
+        <span className="label-text">Stock Status</span>
+      </label>
+      <label className="flex items-center gap-5">
+        <div className="flex items-center gap-2">
+          <span className="text-xl">In stock</span>
+          <input
+            type="radio"
+            value="In stock"
+            name="stockStatus"
+            className="radio"
+            checked={stockStatusOption === 'In stock'}
+            onChange={handleStockStatusOptionOptionChange}
+          />
+        </div>
+        <div className="flex items-center gap-2">
+          <span className="text-xl">Made to Order</span>
+          <input
+            type="radio"
+            value="Made to Order"
+            name="stockStatus"
+            className="radio"
+            checked={stockStatusOption === 'Made to Order'}
+            onChange={handleStockStatusOptionOptionChange}
+          />
+        </div>
+      </label>
+    </div>
                     </div>
                 </div>
                 <div className="mb-8">
@@ -149,7 +201,7 @@ const UpdateCraft = () => {
                             <span className="label-text">Description</span>
                         </label>
                         <label className="input-group">
-                            <textarea type="text" name="description" placeholder="Description" className="textarea textarea-bordered w-full" />
+                            <textarea defaultValue={craft?.description} type="text" name="description" placeholder="Description" className="textarea textarea-bordered w-full" />
                         </label>
                     </div>
                 </div>

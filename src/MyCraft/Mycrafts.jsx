@@ -16,7 +16,15 @@ const Mycrafts = () => {
             setCrafts(data);
         })
     },[user])
-console.log(crafts)
+const handleDelete = (id)=>{
+    fetch(`http://localhost:5000/delete/${id}`,{
+        method:'DELETE'
+    })
+    .then(res=>res.json())
+    .then(data=>{
+        console.log(data);
+    })
+}
     return (
         <div className="py-20 container mx-auto">
             {
@@ -45,7 +53,7 @@ console.log(crafts)
                         <hr />
                         <div className="flex justify-end gap-5">
                             <Link to={`/updateCraft/${craft._id}`} className="btn">Update</Link>
-                            <Link to={`/`} className="btn">Delete</Link>
+                            <button onClick={()=>handleDelete(craft._id)} className="btn">Delete</button>
                         </div>
                     </div>
                 </div>

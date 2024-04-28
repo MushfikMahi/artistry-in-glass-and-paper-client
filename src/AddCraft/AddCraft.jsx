@@ -110,13 +110,6 @@ const AddCraft = () => {
                         <label className="input-group">
                             <input type="text" name="rating" placeholder="Rating" className="input input-bordered w-full" />
                         </label>
-                        {/* <div className="rating">
-  <input type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" />
-  <input type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" />
-  <input type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" />
-  <input type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" />
-  <input type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" />
-</div> */}
                     </div>
                     <div className="form-control md:w-1/3 md:ml-10 ml-4">
                         <div>
@@ -171,7 +164,7 @@ const AddCraft = () => {
                             <span className="label-text">User Name</span>
                         </label>
                         <label className="input-group">
-                            <input type="text" name="userName" placeholder="User Name" className="input input-bordered w-full" />
+                            <input defaultValue={user?.displayName} type="text" name="userName" placeholder="User Name" className="input input-bordered w-full" />
                         </label>
                     </div>
                     <div className="form-control md:w-1/2 md:ml-4">
@@ -179,7 +172,7 @@ const AddCraft = () => {
                             <span className="label-text">User Email</span>
                         </label>
                         <label className="input-group">
-                            <input type="text" name="userEmail" placeholder="User Email" className="input input-bordered w-full" />
+                            <input defaultValue={user?.email} type="text" name="userEmail" placeholder="User Email" className="input input-bordered w-full" />
                         </label>
                     </div>
                 </div>
