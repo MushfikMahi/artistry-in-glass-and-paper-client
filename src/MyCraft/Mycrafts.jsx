@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 const Mycrafts = () => {
     const {user} = useContext(AuthContext)
     const [crafts, setCrafts] = useState([])
+    const [control, setControl] = useState(false)
     console.log(user?.email);
     // { _id, photo, name, subcategory, time, price, rating, 
     // customization, stockStatus, description, userName, userEmail }
@@ -15,7 +16,7 @@ const Mycrafts = () => {
         .then(data=>{
             setCrafts(data);
         })
-    },[user])
+    },[user, control])
 const handleDelete = (id)=>{
     fetch(`http://localhost:5000/delete/${id}`,{
         method:'DELETE'
@@ -23,6 +24,9 @@ const handleDelete = (id)=>{
     .then(res=>res.json())
     .then(data=>{
         console.log(data);
+        if(data.deletedCount>0){
+            setControl(!control)
+        }
     })
 }
     return (
