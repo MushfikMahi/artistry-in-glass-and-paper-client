@@ -11,6 +11,7 @@ import AllCrafts from "../AllCrafts/AllCrafts";
 import DetailCraft from "../AllCrafts/DetailCraft";
 import Mycrafts from "../MyCraft/Mycrafts";
 import Private from "../Private/Private";
+import Profile from "../Profile/Profile";
 
 const router = createBrowserRouter([
     {
@@ -52,6 +53,10 @@ const router = createBrowserRouter([
           path: '/updateCraft/:id',
           element: <UpdateCraft></UpdateCraft>,
           loader: ({params})=> fetch(`http://localhost:5000/update/${params.id}`)
+        },
+        {
+          path:'/profile',
+          element:<Private><Profile></Profile></Private>
         }
       ],
     },
