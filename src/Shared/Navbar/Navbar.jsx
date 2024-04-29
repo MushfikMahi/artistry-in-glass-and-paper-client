@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
 import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../../Provider/AuthProvider";
+import { toast } from "react-toastify";
 
 const Navbar = () => {
   const [theme, setTheme] = useState('light')
@@ -24,21 +25,33 @@ const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
   const handleLogOut = () => {
     logOut()
+    toast("You have sucessfully loged Out", {
+      className: "mt-20",
+    })
   };
     const links = (
         <>
           <li>
-            <NavLink to={"/"}>Home</NavLink>
+            <NavLink style={({ isActive }) => 
+            ({color: isActive ? "#fff" : "#ff6b6b", backgroundColor: isActive && "#ff6b6b"})} 
+            to={"/"}>Home</NavLink>
           </li>
           <li>
-            <NavLink to={"/allcrafts"}>All Art & craft Items</NavLink>
+            <NavLink
+            style={({ isActive }) => ({color: isActive ? "#fff" : "#ff6b6b", backgroundColor: isActive && "#ff6b6b"})}
+             to={"/allcrafts"}>All Art & craft Items</NavLink>
           </li>
             <>
             <li>
-            <NavLink to={"/addcraft"}>Add Craft Item</NavLink>
+            <NavLink
+            style={({ isActive }) => ({color: isActive ? "#fff" : "#ff6b6b", backgroundColor: isActive && "#ff6b6b"})}
+             to={"/addcraft"}>Add Craft Item</NavLink>
           </li>
           <li>
-            <NavLink to={"/mycrafts"}>My Art&Craft List</NavLink>
+            <NavLink
+            style={({ isActive }) => 
+            ({color: isActive ? "#fff" : "#ff6b6b", backgroundColor: isActive && "#ff6b6b"})}
+             to={"/mycrafts"}>My Art&Craft List</NavLink>
           </li>
           </>
         </>
@@ -53,7 +66,7 @@ const Navbar = () => {
       <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          className="h-5 w-5"
+          className="h-5 w-5 text-[#ff6b6b]"
           fill="none"
           viewBox="0 0 24 24"
           stroke="currentColor"
@@ -74,7 +87,7 @@ const Navbar = () => {
       </ul>
     </div>
     <Link to={"/"} className="btn btn-ghost text-xl">
-    Artistry in Glass & Paper
+    Artistry in <span className="text-[#ff6b6b] font-extrabold">Glass & Paper</span> 
     </Link>
   </div>
   <div className="navbar-center hidden lg:flex">
@@ -90,15 +103,15 @@ const Navbar = () => {
   <svg className="col-start-2 row-start-1 stroke-base-100 fill-base-100" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
 </label>
   {user ? (
-    <div className="flex items-center gap-5">
+    <div className="flex flex-row-reverse items-center gap-3">
       <div className="w-10 rounded-full">
         <Link to={"/profile"}>
-          <img className="w-10 h-10 rounded-full border-green-500 border-4" title={user.displayName} alt="user" src={user.photoURL} />
+          <img className="w-10 h-10 rounded-full border-[#ff6b6b] border-4" title={user.displayName} alt="user" src={user.photoURL} />
         </Link>
       </div>
       <button
         onClick={handleLogOut}
-        className="btn bg-green-500 text-white border-none"
+        className="link-hover text-white hover:bg-[#ff6b6b] p-2 rounded-xl"
       >
         Log Out
       </button>
@@ -107,13 +120,13 @@ const Navbar = () => {
     <div className="flex items-center gap-5">
       <Link
       to={"/login"}
-      className="btn bg-green-500 text-white border-none"
+      className="btn bg-[#ff6b6b] text-white border-none"
     >
       Log In
     </Link>
     <Link
       to={"/register"}
-      className="btn bg-green-500 text-white border-none"
+      className="btn bg-[#ff6b6b] text-white border-none"
     >
       Register
     </Link>

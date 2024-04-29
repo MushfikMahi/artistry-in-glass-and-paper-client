@@ -1,5 +1,5 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useContext, useState } from "react";
 import { AuthContext } from "../Provider/AuthProvider";
@@ -22,9 +22,9 @@ const Register = () => {
         if (/.*[a-z].*/.test(password)) {
           emailPassCreateUser(email, password)
             .then(() => {
-                toast("You have sucessfully Registered", {
-                  className: "pt-20",
-                });
+              toast("You have sucessfully loged in", {
+                className: "mt-20",
+              }),
                 
               updateUser(name, photo);
               console.log(name, photo);
@@ -62,7 +62,6 @@ const Register = () => {
     >
       <div className="hero-overlay bg-opacity-60"></div>
       <div className="mt-20">
-        <ToastContainer />
       </div>
       <div className="hero-content text-center text-neutral-content">
         <div className="hero">
@@ -130,7 +129,7 @@ const Register = () => {
                   </span>
                 </div>
                 <div className="form-control mt-6">
-                  <button className="btn bg-transparent border-green-500 hover:border-transparent text-white hover:bg-green-400">
+                  <button className="btn bg-transparent border-[#ff6b6b] hover:border-transparent text-white hover:bg-[#ff6b6b]">
                     Register
                   </button>
                 </div>

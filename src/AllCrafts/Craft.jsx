@@ -21,7 +21,7 @@ const Craft = ({craft}) => {
     </div>
     <div className="card-actions justify-end">
       <Link to={`/detail/${_id}`}>
-      <button className="btn">View Detail</button>
+      <button className="btn bg-[#ff6b6b] text-white">View Detail</button>
       </Link>
     </div>
   </div>

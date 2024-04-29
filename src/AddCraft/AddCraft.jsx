@@ -21,7 +21,7 @@ const AddCraft = () => {
         console.log(photo, name, subcategory, time, price, rating, customization, stockStatus, description, userName, userEmail);
         const craft = { photo, name, subcategory, time, price, rating, customization, stockStatus, description, userName, userEmail }
         console.log(craft);
-        fetch('http://localhost:5000/crafts', {
+        fetch('https://paper-crafts-and-glass-art-server.vercel.app/crafts', {
             method: 'POST', 
             headers: {
                 'content-type' : 'application/json'
@@ -43,25 +43,26 @@ const AddCraft = () => {
         })
     }
     return (
-        <div className="bg-[#F4F3F0] md:p-24 px-6 py-14">
-            <h2 className="text-3xl font-extrabold">Add a Craft</h2>
+        <div className="md:p-24 px-6 py-14">
+            <h2 className="text-3xl font-bold">Add a Craft</h2>
             <form onSubmit={handleAddCraft}>
                 <div className="md:flex md:mb-8">
                     
+                   
                     <div className="form-control md:w-1/2">
-                    <label className="label">
-                            <span className="label-text">Photo URL</span>
-                        </label>
-                        <label className="input-group">
-                            <input type="text" name="photo" placeholder="Photo URL" className="input input-bordered w-full" />
-                        </label>
-                    </div>
-                    <div className="form-control md:w-1/2 md:ml-4">
                         <label className="label">
                             <span className="label-text">Craft Name</span>
                         </label>
                         <label className="input-group">
                             <input type="text" name="name" placeholder="Craft Name" className="input input-bordered w-full" />
+                        </label>
+                    </div>
+                    <div className="form-control md:w-1/2 md:ml-4">
+                    <label className="label">
+                            <span className="label-text">Photo URL</span>
+                        </label>
+                        <label className="input-group">
+                            <input type="text" name="photo" placeholder="Photo URL" className="input input-bordered w-full" />
                         </label>
                     </div>
                     
@@ -176,7 +177,7 @@ const AddCraft = () => {
                         </label>
                     </div>
                 </div>
-                <input type="submit" value="Add Craft" className="btn btn-block" />
+                <input type="submit" value="Add Craft" className="btn btn-block text-white bg-[#ff6b6b]" />
 
             </form>
         </div>

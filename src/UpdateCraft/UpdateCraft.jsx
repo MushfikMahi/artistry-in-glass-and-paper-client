@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { IoIosArrowDown } from "react-icons/io";
-import { useLoaderData } from "react-router-dom";
-
+import { useLoaderData, useNavigate } from "react-router-dom";
+import Swal from 'sweetalert2'
 const UpdateCraft = () => {
     const craft = useLoaderData()
 
@@ -21,8 +21,7 @@ const UpdateCraft = () => {
     const handleStockStatusOptionOptionChange = (e) => {
         setStockStatusOption(e.target.value);
       };
-
-
+      const navigate = useNavigate()
     const handleUpdateCraft = event=>{
         event.preventDefault()
         const form = event.target;
@@ -39,7 +38,7 @@ const UpdateCraft = () => {
         console.log(photo, name, subcategory, time, price, rating, customization, stockStatus, description);
         const updatedCraft = {photo, name, subcategory, time, price, rating, customization, stockStatus, description}
 
-        fetch(`http://localhost:5000/update/${craft._id}`,{
+        fetch(`https://paper-crafts-and-glass-art-server.vercel.app/update/${craft._id}`,{
           method: 'PUT',
           headers: {
             'content-type': 'application/json'
@@ -48,30 +47,25 @@ const UpdateCraft = () => {
         })
         .then(res=>res.json())
         .then(data=>{
-          console.log(data);
+          console.log(data.modifiedCount);
+          if(data.modifiedCount>0){
+            Swal.fire({
+              title: 'Success!',
+              text: 'You have successfully Updated a craft',
+              icon: 'success',
+              confirmButtonText: 'Okay'
+            })
+            navigate('/mycrafts')
+          }
         })
     }
-    
-    
-
-    
-
-
-    
     return (
-        <div className="bg-[#F4F3F0] md:p-24 px-6 py-14">
-            <h2 className="text-3xl font-extrabold">Update the craft : {craft?.name}</h2>
+        <div className="md:p-24 px-6 py-14 mb-20">
+            <h2 className="text-3xl font-bold">Update the craft : {craft?.name}</h2>
             <form onSubmit={handleUpdateCraft}>
                 <div className="md:flex md:mb-8">
+                    
                     <div className="form-control md:w-1/2">
-                    <label className="label">
-                            <span className="label-text">Photo URL</span>
-                        </label>
-                        <label className="input-group">
-                            <input defaultValue={craft?.photo} type="text" name="photo" placeholder="Photo URL" className="input input-bordered w-full" />
-                        </label>
-                    </div>
-                    <div className="form-control md:w-1/2 md:ml-4">
                         <label className="label">
                             <span className="label-text">Craft Name</span>
                         </label>
@@ -79,7 +73,14 @@ const UpdateCraft = () => {
                             <input defaultValue={craft?.name} type="text" name="name" placeholder="Craft Name" className="input input-bordered w-full" />
                         </label>
                     </div>
-                    
+                    <div className="form-control md:w-1/2 md:ml-4">
+                    <label className="label">
+                            <span className="label-text">Photo URL</span>
+                        </label>
+                        <label className="input-group">
+                            <input defaultValue={craft?.photo} type="text" name="photo" placeholder="Photo URL" className="input input-bordered w-full" />
+                        </label>
+                    </div>
                 </div>
                 <div className="md:flex md:mb-8">
                 <div className="form-control md:w-1/3">
@@ -205,7 +206,7 @@ const UpdateCraft = () => {
                         </label>
                     </div>
                 </div>
-                <input type="submit" value="Update Craft" className="btn btn-block" />
+                <input type="submit" value="Update Craft" className="btn btn-block text-white bg-[#ff6b6b]" />
 
             </form>
         </div>

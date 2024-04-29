@@ -23,7 +23,7 @@ const Profile = () => {
           <div className="flex flex-col md:flex-row items-center justify-center">
             <div className="flex flex-col items-center space-y-5">
               <img
-                className="h-32 rounded-full border-green-500 border-4"
+                className="h-32 rounded-full border-[#ff6b6b] border-4"
                 src={user.photoURL}
                 alt=""
               />
@@ -68,7 +68,7 @@ const Profile = () => {
                         />
                       </div>
                       <div className="form-control mt-6">
-                        <button className="btn  bg-transparent w-full border-green-500 hover:border-transparent text-white hover:bg-green-400">
+                        <button className="btn  bg-transparent w-full border-[#ff6b6b] hover:border-transparent text-white hover:bg-[#ff6b6b]">
                           Update
                         </button>
                       </div>

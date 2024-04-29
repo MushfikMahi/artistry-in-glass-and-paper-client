@@ -1,6 +1,6 @@
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
-
+import { useTypewriter, Cursor } from 'react-simple-typewriter'
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/pagination";
@@ -10,9 +10,29 @@ import "swiper/css/navigation";
 import { Pagination, Navigation } from "swiper/modules";
 
 export default function Banner() {
+  const [text1] = useTypewriter({
+    words: ['Discover the Magic of Glass Art', 'Explore the Enchantment of Glass Creations', 'Unveil the Wonders of Glass Artistry'],
+    loop: 0,
+  })
+  const [text2] = useTypewriter({
+    words: ['Unleash Your Creativity with Paper Crafts', 
+    'Ignite Your Imagination through Paper Crafting', 
+    'Unlock the Power of Creativity with Paper Crafts'],
+    loop: 3,
+  })
+  const [text3] = useTypewriter({
+    words: ['Craftsmanship Meets Innovation', 
+    'Innovation Infused with Craftsmanship', 
+    'Crafting Excellence: Where Tradition Meets Innovation'],
+    loop: 3,
+  })
   return (
     <div className="">
       <Swiper
+      style={{
+        '--swiper-navigation-color': '#ff6b6b',
+        '--swiper-pagination-color': '#ff6b6b',
+      }}
         slidesPerView={1}
         spaceBetween={30}
         loop={true}
@@ -35,7 +55,7 @@ export default function Banner() {
             <div className="hero-content text-center text-neutral-content">
               <div className="md:px-20 px-10 text-white">
                 <h1 className="mb-5 lg:text-5xl md:text-3xl text-2xl font-bold">
-                Discover the Magic of Glass Art
+                {text1}<Cursor cursorColor='#ff6b6b' />
                 </h1>
                 <p className="mb-5 text-sm md:text-base">
                 Immerse yourself in the world of glass artistry. Explore stunning creations crafted with precision and passion.
@@ -56,7 +76,7 @@ export default function Banner() {
             <div className="hero-content text-center text-neutral-content">
               <div className="md:px-20 px-10 text-white">
                 <h1 className="mb-5 lg:text-5xl md:text-3xl text-2xl font-bold">
-                Unleash Your Creativity with Paper Crafts
+                {text2}<Cursor cursorColor='#ff6b6b' />
                 </h1>
                 <p className="mb-5 text-sm md:text-base">
                 Experience the beauty of paper crafts. Let your imagination soar as you create intricate designs and delicate masterpieces.
@@ -77,7 +97,7 @@ export default function Banner() {
             <div className="hero-content text-center text-neutral-content">
               <div className="md:px-20 px-10 text-white">
                 <h1 className="mb-5 lg:text-5xl md:text-3xl text-2xl font-bold">
-                Craftsmanship Meets Innovation
+                {text3}<Cursor cursorColor='#ff6b6b' />
                 </h1>
                 <p className="mb-5 text-sm md:text-base">
                 Witness the fusion of traditional craftsmanship and modern innovation. Explore unique creations that push the boundaries of creativity.

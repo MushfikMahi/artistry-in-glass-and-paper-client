@@ -23,7 +23,7 @@ const router = createBrowserRouter([
         {
           path: "/",
           element: <Home></Home>,
-          loader: ()=> fetch('http://localhost:5000/crafts')
+          loader: ()=> fetch('https://paper-crafts-and-glass-art-server.vercel.app/crafts')
         },
         {
           path: "/login",
@@ -36,12 +36,12 @@ const router = createBrowserRouter([
         {
           path: '/allcrafts',
           element: <AllCrafts></AllCrafts>,
-          loader: ()=> fetch('http://localhost:5000/crafts')
+          loader: ()=> fetch('https://paper-crafts-and-glass-art-server.vercel.app/crafts')
         },
         {
           path: '/detail/:id',
           element:<DetailCraft></DetailCraft>,
-          loader: ({params})=> fetch(`http://localhost:5000/crafts/${params.id}`)
+          loader: ({params})=> fetch(`https://paper-crafts-and-glass-art-server.vercel.app/crafts/${params.id}`)
         },
         {
           path: '/mycrafts',
@@ -54,7 +54,7 @@ const router = createBrowserRouter([
         {
           path: '/updateCraft/:id',
           element: <UpdateCraft></UpdateCraft>,
-          loader: ({params})=> fetch(`http://localhost:5000/update/${params.id}`)
+          loader: ({params})=> fetch(`https://paper-crafts-and-glass-art-server.vercel.app/update/${params.id}`)
         },
         {
           path:'/profile',
@@ -63,7 +63,7 @@ const router = createBrowserRouter([
         {
           path: '/subcategory/:subcategory_Name',
           element: <AllSubcategory></AllSubcategory>,
-          loader: ()=> fetch('http://localhost:5000/crafts')
+          loader: ()=> fetch('https://paper-crafts-and-glass-art-server.vercel.app/crafts')
         }
       ],
     },

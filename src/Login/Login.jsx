@@ -3,7 +3,7 @@ import { Helmet } from "react-helmet";
 import { useContext } from "react";
 import { AuthContext } from "../Provider/AuthProvider";
 import { FaGithub, FaGoogle } from "react-icons/fa6";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 const Login = () => {
   const { emailPassLogIn, googleCreateUser, gitHubCreateUser } =
     useContext(AuthContext);
@@ -16,16 +16,20 @@ const Login = () => {
     console.log(email, password);
     emailPassLogIn(email, password)
       .then( () => 
-      navigate(location?.state ? location.state : "/"),
-        toast("You have sucessfully loged in", {
-          className: "mt-20",
-        })
+      toast("You have sucessfully loged in", {
+        className: "mt-20",
+      }),
+      navigate(location?.state ? location.state : "/")
+        
       )
       .catch((error) => toast.error(error.message));
   };
   const handelGoogleSignIn = () => {
     googleCreateUser()
       .then(() => {
+        toast("You have sucessfully loged in", {
+          className: "mt-20",
+        }),
         navigate(location?.state ? location.state : "/");
       })
       .catch((error) => console.log(error));
@@ -33,6 +37,9 @@ const Login = () => {
   const handleGitHubSignIn = () => {
     gitHubCreateUser()
       .then(() => {
+        toast("You have sucessfully loged in", {
+          className: "mt-20",
+        }),
         navigate(location?.state ? location.state : "/");
       })
       .catch((error) => console.log(error));
@@ -84,7 +91,7 @@ const Login = () => {
                   />
                 </div>
                 <div className="form-control mt-6">
-                  <button className="btn bg-transparent border-green-500 hover:border-transparent text-white hover:bg-green-400">
+                  <button className="btn bg-transparent border-[#ff6b6b] hover:border-transparent text-white hover:bg-[#ff6b6b]">
                     Login
                   </button>
                 </div>
@@ -97,7 +104,7 @@ const Login = () => {
               </p>
               <div className="mt-5">
                 <button
-                  className="btn bg-transparent w-full border-green-500 hover:border-transparent text-white hover:bg-green-400"
+                  className="btn bg-transparent w-full border-[#ff6b6b] hover:border-transparent text-white hover:bg-[#ff6b6b]"
                   onClick={handelGoogleSignIn}
                 >
                   <FaGoogle />
@@ -106,7 +113,7 @@ const Login = () => {
               </div>
               <div className="mt-5">
                 <button
-                  className="btn bg-transparent w-full border-green-500 hover:border-transparent text-white hover:bg-green-400"
+                  className="btn bg-transparent w-full border-[#ff6b6b] hover:border-transparent text-white hover:bg-[#ff6b6b]"
                   onClick={handleGitHubSignIn}
                 >
                   <FaGithub />
@@ -116,8 +123,8 @@ const Login = () => {
             </div>
           </div>
         </div>
-        <ToastContainer />
       </div>
+      
     </div>
   );
 };
