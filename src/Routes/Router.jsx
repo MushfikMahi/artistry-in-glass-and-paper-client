@@ -12,6 +12,7 @@ import DetailCraft from "../AllCrafts/DetailCraft";
 import Mycrafts from "../MyCraft/Mycrafts";
 import Private from "../Private/Private";
 import Profile from "../Profile/Profile";
+import AllSubcategory from "../Home/AllSubcategory/AllSubcategory";
 
 const router = createBrowserRouter([
     {
@@ -57,6 +58,11 @@ const router = createBrowserRouter([
         {
           path:'/profile',
           element:<Private><Profile></Profile></Private>
+        }, 
+        {
+          path: '/subcategory/:subcategory_Name',
+          element: <AllSubcategory></AllSubcategory>,
+          loader: ()=> fetch('http://localhost:5000/crafts')
         }
       ],
     },

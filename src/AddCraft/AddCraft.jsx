@@ -38,7 +38,7 @@ const AddCraft = () => {
                     icon: 'success',
                     confirmButtonText: 'Cancel'
                   })
-                //   form.reset()
+                  form.reset()
             }
         })
     }
