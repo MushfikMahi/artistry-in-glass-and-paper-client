@@ -4,6 +4,7 @@ import Subcategory from "./Subcategory";
 import { Link, useLoaderData } from "react-router-dom";
 import AllCrafts from "../AllCrafts/AllCrafts";
 import Craft from "../AllCrafts/Craft";
+import Testimony from "./Testimonials/Testimony";
 
 const Home = () => {
     const crafts = useLoaderData();
@@ -36,6 +37,10 @@ const Home = () => {
                 {
                     subcategories.map(subcategory=><Subcategory key={subcategory._id} subcategory={subcategory}></Subcategory>)
                 }
+            </div>
+            <h3 className="text-3xl font-bold text-center my-14">Testimonials</h3>
+            <div>
+                <Testimony></Testimony>
             </div>
             </div>
         </div>
