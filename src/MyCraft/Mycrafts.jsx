@@ -2,14 +2,27 @@ import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../Provider/AuthProvider";
 import { Link } from "react-router-dom";
 import Swal from 'sweetalert2'
+import { IoIosArrowDown } from "react-icons/io";
 
 const Mycrafts = () => {
     const {user} = useContext(AuthContext)
     const [crafts, setCrafts] = useState([])
     const [control, setControl] = useState(false)
     console.log(user?.email);
-    // { _id, photo, name, subcategory, time, price, rating, 
-    // customization, stockStatus, description, userName, userEmail }
+
+    const [filter, setFilter] = useState('All');
+
+    const filteredCrafts = () => {
+        if (filter === 'Yes') {
+          return crafts.filter(craft => craft.customization === 'Yes');
+        } else if (filter === 'No') {
+          return crafts.filter(craft => craft.customization === 'No');
+        } else {
+          return crafts;
+        }
+      };
+
+
     useEffect(()=>{
         fetch(`https://paper-crafts-and-glass-art-server.vercel.app/mycrafts/${user?.email}`)
         .then(res=>res.json())
@@ -49,8 +62,22 @@ const handleDelete = (id)=>{
 }
     return (
         <div className="py-20 container mx-auto">
+
+<div className="flex justify-center my-5">
+<div className="dropdown ">
+
+<div tabIndex={0} role="button" className="m-1 pr-8 relative btn bg-[#ff6b6b] text-white">Filter by customization <IoIosArrowDown className="absolute text-white text-xl right-2 top-4" /></div>
+  <ul tabIndex={0} className="dropdown-content menu z-[1] p-2 shadow bg-base-100 rounded-box w-52">
+    <li className="hover:bg-[#f06969] hover:text-white rounded-xl" onClick={() => setFilter('All')}><a>All</a></li>
+    <li className="hover:bg-[#f06969] hover:text-white rounded-xl" onClick={() => setFilter('Yes')}><a>Yes</a></li>
+    <li className="hover:bg-[#f06969] hover:text-white rounded-xl" onClick={() => setFilter('No')}><a>No</a></li>
+  </ul>
+</div>
+</div>
+
+
             {
-                crafts?.map(craft=>(
+                filteredCrafts().map(craft=>(
                 <div key={craft._id} className="flex md:flex-row flex-col gap-5 mb-5 rounded-2xl shadow-xl">
                     <div className="md:w-1/3 p-5 flex items-center">
                         <img className="rounded-xl" src={craft.photo} alt={craft.name} />
