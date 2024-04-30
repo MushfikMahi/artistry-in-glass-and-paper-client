@@ -19,7 +19,7 @@ const Profile = () => {
     >
       <div className="hero-overlay bg-opacity-60"></div>
       <div className="hero-content text-center text-neutral-content my-20">
-        <div className="glass p-10 rounded-2xl">
+        <div className="glass p-5 md:p-10 rounded-2xl">
           <div className="flex flex-col md:flex-row items-center justify-center">
             <div className="flex flex-col items-center space-y-5">
               <img
