@@ -7,13 +7,11 @@ const Subcategory = ({subcategory}) => {
         data-tooltip-id="my-tooltip"
         data-tooltip-content={`Click to see all the craft under the subcategory of ${subcategory_Name}`}
         data-tooltip-place="top">
-            <div className="card bg-base-100 shadow-xl image-full">
-  <figure className="h-[200px]"><img src={photo} alt={subcategory_Name} /></figure>
-  <div className="card-body flex items-center justify-center">
-    <h2 className="card-title link text-white">{subcategory_Name}</h2>
-    <Tooltip id="my-tooltip" />
-  </div>
+          <div className="relative h-72 text-center">
+    <img className="w-full h-full rounded-2xl object-cover" src={photo} alt={subcategory_Name} />
+    <h1 className="absolute link text-white bg-black/30 text-2xl font-bold w-full h-full top-1/2 left-1/2 transform translate-x-[-50%] translate-y-[-50%] flex justify-center items-center rounded-2xl overflow-hidden cursor-pointer">{subcategory_Name}</h1>
 </div>
+<Tooltip id="my-tooltip" />
         </Link>
     );
 };

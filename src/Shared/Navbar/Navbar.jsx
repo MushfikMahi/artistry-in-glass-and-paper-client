@@ -3,6 +3,7 @@ import { Helmet } from "react-helmet";
 import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../../Provider/AuthProvider";
 import { toast } from "react-toastify";
+import { Tooltip } from "react-tooltip";
 
 const Navbar = () => {
   const [theme, setTheme] = useState('light')
@@ -58,9 +59,6 @@ const Navbar = () => {
       );
     return (
         <div className="navbar shadow-xl fixed z-10 bg-black bg-opacity-60 text-white">
-  <Helmet>
-    <title>Artistry - Home</title>
-  </Helmet>
   <div className="navbar-start">
     <div className="dropdown">
       <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -87,7 +85,7 @@ const Navbar = () => {
       </ul>
     </div>
     <Link to={"/"} className="btn btn-ghost text-xl">
-    Artistry in <span className="text-[#ff6b6b] font-extrabold">Glass & Paper</span> 
+    Artistry <span className="hidden md:block">in</span> <span className="text-[#ff6b6b] font-extrabold hidden md:block">Glass & Paper</span> 
     </Link>
   </div>
   <div className="navbar-center hidden lg:flex">
@@ -105,16 +103,24 @@ const Navbar = () => {
   {user ? (
     <div className="flex flex-row-reverse items-center gap-3">
       <div className="w-10 rounded-full">
-        <Link to={"/profile"}>
-          <img className="w-10 h-10 rounded-full border-[#ff6b6b] border-4" title={user.displayName} alt="user" src={user.photoURL} />
-        </Link>
+          <img id="clickable" className="w-10 h-10 rounded-full border-[#ff6b6b] border-4" title={user.displayName} alt="user" src={user.photoURL} />
       </div>
+      <Tooltip anchorSelect="#clickable" clickable>
+      <div className="flex flex-col">
       <button
         onClick={handleLogOut}
-        className="link-hover text-white hover:bg-[#ff6b6b] p-2 rounded-xl"
+        className="link text-white hover:bg-[#ff6b6b] p-2 rounded-xl"
       >
         Log Out
       </button>
+      <Link
+        to={"/profile"}
+        className="link text-white hover:bg-[#ff6b6b] p-2 rounded-xl"
+      >
+        {user.displayName}
+      </Link>
+      </div>
+      </Tooltip>
     </div>
   ) : (
     <div className="flex items-center gap-5">
