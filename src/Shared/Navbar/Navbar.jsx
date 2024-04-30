@@ -85,7 +85,7 @@ const Navbar = () => {
       </ul>
     </div>
     <Link to={"/"} className="btn btn-ghost text-xl">
-    Artistry <span className="hidden md:block">in</span> <span className="text-[#ff6b6b] font-extrabold hidden md:block">Glass & Paper</span> 
+    <span className="md:text-white text-[#ff6b6b]">Artistry</span> <span className="hidden md:block">in</span> <span className="text-[#ff6b6b] font-extrabold hidden md:block">Glass & Paper</span> 
     </Link>
   </div>
   <div className="navbar-center hidden lg:flex">

@@ -11,7 +11,7 @@ const DetailCraft = () => {
         customization, stockStatus, description, 
         userName, userEmail } = craft
     return (
-        <div className="flex container mx-auto gap-5 py-20">
+        <div className="flex flex-col md:flex-row container mx-auto gap-5 py-20">
             <div className="flex-1">
                 <img src={photo} alt={name} />
             </div>
